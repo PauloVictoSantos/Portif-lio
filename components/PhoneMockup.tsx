@@ -1,0 +1,56 @@
+"use client"
+
+import React, { useEffect, useState } from "react"
+
+interface PhoneMockupProps {
+  children: React.ReactNode
+}
+
+export default function PhoneMockup({ children }: PhoneMockupProps) {
+  const [time, setTime] = useState("")
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      setTime(
+        now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      )
+    }
+
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="relative mx-auto w-92.5 h-185">
+
+      {/* FRAME */}
+      <div className="absolute inset-0 rounded-[55px] border-12 border-black bg-black">
+
+        {/* NOTCH */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-32 h-7 bg-black rounded-full z-30" />
+
+
+        {/* SCREEN */}
+        <div className="absolute inset-0 rounded-[42px] overflow-hidden bg-neutral-950">
+
+          {/* Safe area */}
+          <div className="absolute inset-0  overflow-y-auto">
+            {children}
+          </div>
+
+        </div>
+      </div>
+
+      {/* SIDE BUTTONS */}
+      <div className="absolute top-40 -right-[2px] h-16 w-[3px] bg-black rounded-l-md" />
+      <div className="absolute top-28 -left-[2px] h-12 w-[3px] bg-black rounded-r-md" />
+      <div className="absolute top-44 -left-[2px] h-16 w-[3px] bg-black rounded-r-md" />
+
+    </div>
+  )
+}
