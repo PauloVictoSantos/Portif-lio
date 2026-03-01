@@ -17,10 +17,6 @@ import {
 
 const pages = ["home", "projects", "stats", "contact"]
 
-/* ===============================
-   TECHNOLOGIES
-================================ */
-
 const techs = [
   { name: "React", icon: <SiReact size={28} color="#61DAFB" /> },
   { name: "Next.js", icon: <SiNextdotjs size={28} color="white" /> },
@@ -31,10 +27,6 @@ const techs = [
   { name: "C", icon: <SiC size={28} color="#A8B9CC" /> },
   { name: "GitHub", icon: <SiGithub size={28} color="white" /> },
 ]
-
-/* ===============================
-   GLASS CARD
-================================ */
 
 const VisionCard = ({ children }: any) => (
   <motion.div
@@ -47,17 +39,13 @@ const VisionCard = ({ children }: any) => (
       bg-white/10
       backdrop-blur-3xl
       border border-white/20
-      shadow-[0_30px_80px_rgba(0,0,0,0.35)]
+      
     "
   >
-    <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/30 to-transparent opacity-40 pointer-events-none" />
+    <div className="absolute inset-0 rounded-[32px] bg-linear-to-br from-white/30 to-transparent opacity-40 pointer-events-none" />
     {children}
   </motion.div>
 )
-
-/* ===============================
-   FLOATING STAT
-================================ */
 
 const FloatingStat = ({ label, value }: any) => (
   <motion.div
@@ -77,10 +65,6 @@ const FloatingStat = ({ label, value }: any) => (
     </p>
   </motion.div>
 )
-
-/* ===============================
-   HOME SCREEN
-================================ */
 
 function HomeScreen() {
   return (
@@ -110,11 +94,11 @@ function HomeScreen() {
             transition={{ delay: index * 0.05 }}
             whileHover={{ scale: 1.12 }}
             whileTap={{ scale: 0.95 }}
-            className="flex flex-col items-center w-[70px]"
+            className="flex flex-col items-center w-17.5"
           >
             <div
               className="
-                w-[62px] h-[62px]
+                w-15.5 h-15.5
                 flex items-center justify-center
                 bg-white/10
                 backdrop-blur-2xl
@@ -140,10 +124,6 @@ function HomeScreen() {
   )
 }
 
-/* ===============================
-   MAIN COMPONENT
-================================ */
-
 export default function PhoneContent() {
   const [activePage, setActivePage] = useState("home")
   const [github, setGithub] = useState<any>(null)
@@ -153,7 +133,6 @@ export default function PhoneContent() {
   const [networkType, setNetworkType] = useState<string | null>(null)
   const [isOnline, setIsOnline] = useState(true)
 
-  // Clock
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
@@ -217,7 +196,6 @@ export default function PhoneContent() {
     }
   }, [])
 
-  // GitHub API
   useEffect(() => {
     fetch("/api/github")
       .then(res => res.json())
@@ -227,21 +205,18 @@ export default function PhoneContent() {
   return (
     <div className="relative mx-auto h-full overflow-hidden">
 
-      {/* BACKGROUND */}
       <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500" />
       <div className="absolute w-125 h-125 bg-white/20 blur-[140px] rounded-full -top-40 -left-40 animate-pulse" />
       <div className="absolute w-100 h-100 bg-cyan-400/30 blur-[120px] rounded-full bottom-0 right-0 animate-pulse" />
 
       <div className="relative flex flex-col h-full pt-6 text-white">
 
-        {/* STATUS BAR */}
         <div className="flex justify-between text-xs opacity-90 px-6 mb-6">
 
           <span>{time}</span>
 
           <div className="flex items-center gap-3">
 
-            {/* NETWORK */}
             {isOnline ? (
               <div className="flex items-center gap-1">
                 <span className="text-[10px] uppercase">
@@ -254,14 +229,13 @@ export default function PhoneContent() {
               </span>
             )}
 
-            {/* BATTERY */}
             {batteryLevel !== null ? (
               <div className="flex items-center gap-1">
                 <div className="relative w-6 h-3 border border-white rounded-sm">
                   <div
                     className={`absolute left-0 top-0 h-full rounded-sm transition-all ${batteryLevel < 20
-                        ? "bg-red-500"
-                        : "bg-white"
+                      ? "bg-red-500"
+                      : "bg-white"
                       }`}
                     style={{ width: `${batteryLevel}%` }}
                   />
@@ -278,7 +252,6 @@ export default function PhoneContent() {
           </div>
         </div>
 
-        {/* SWIPE AREA */}
         <motion.div
           className="flex flex-1"
           drag="x"
@@ -349,7 +322,6 @@ export default function PhoneContent() {
 
         </motion.div>
 
-        {/* DOCK */}
         <footer className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[92%]">
           <div className="
             bg-white/20 backdrop-blur-3xl 
@@ -357,13 +329,12 @@ export default function PhoneContent() {
             rounded-full px-10 py-4 
             flex justify-between
           ">
-            <button onClick={() => setActivePage("home")}><Home size={20} /></button>
-            <button onClick={() => setActivePage("projects")}><Folder size={20} /></button>
-            <button onClick={() => setActivePage("stats")}><BarChart3 size={20} /></button>
-            <button onClick={() => setActivePage("contact")}><Mail size={20} /></button>
+            <button className=" cursor-pointer" onClick={() => setActivePage("home")}><Home size={20} /></button>
+            <button className=" cursor-pointer" onClick={() => setActivePage("projects")}><Folder size={20} /></button>
+            <button className=" cursor-pointer" onClick={() => setActivePage("stats")}><BarChart3 size={20} /></button>
+            <button className=" cursor-pointer" onClick={() => setActivePage("contact")}><Mail size={20} /></button>
           </div>
         </footer>
-
       </div>
     </div>
   )

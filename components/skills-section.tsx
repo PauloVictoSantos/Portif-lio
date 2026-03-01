@@ -4,7 +4,7 @@ import { FlipWords } from './ui/flip-words'
 import PhoneMockup from './PhoneMockup'
 import PhoneContent from './Phone'
 
-export default function skills() {
+export default function SkillsSection() {
   const words = ["modern", "scalable", "interactive", "efficient"]
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
