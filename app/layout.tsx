@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google'
 // import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { NavbarDemo } from '@/components/navBar'
+import { ThemeProvider } from '@/components/provedor-de-tema'
 
 const _roboto = Roboto({
   subsets: ['latin'],
@@ -45,9 +46,18 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="font-sans antialiased">
-        <NavbarDemo/>
-        {children}
-        {/* <Analytics /> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="fixed top-0 left-0 right-0 z-50">
+            <NavbarDemo />
+          </div>
+          {children}
+          {/* <Analytics /> */}
+          </ ThemeProvider >
       </body>
     </html>
   )

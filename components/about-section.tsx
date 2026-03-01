@@ -2,7 +2,7 @@ import LanyardWithControls from "./lanyard-with-controls";
 
 export default function AboutSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section id="about" className="min-h-screen flex items-center justify-center">
 
       <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-6">

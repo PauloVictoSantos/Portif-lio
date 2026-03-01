@@ -11,20 +11,33 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { ModeToggle } from "./ModeToggle";
 
 export function NavbarDemo() {
   const navItems = [
     {
-      name: "Features",
-      link: "#features",
+      name: "Home",
+      link: "#home",
     },
     {
-      name: "Pricing",
-      link: "#pricing",
+      name: "Sobre mim",
+      link: "#about",
     },
     {
-      name: "Contact",
-      link: "#contact",
+      name: "Skills",
+      link: "#skills",
+    },
+    {
+      name: "Projetos",
+      link: "#projetos",
+    },
+    {
+      name: "Experiencia",
+      link: "#experiencia",
+    },
+    {
+      name: "Contato",
+      link: "#Contact",
     },
   ];
 
@@ -33,17 +46,14 @@ export function NavbarDemo() {
   return (
     <div className="relative w-full">
       <Navbar>
-        {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <ModeToggle />
           </div>
         </NavBody>
 
-        {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
@@ -67,22 +77,6 @@ export function NavbarDemo() {
                 <span className="block">{item.name}</span>
               </a>
             ))}
-            <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Book a call
-              </NavbarButton>
-            </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>

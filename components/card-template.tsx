@@ -6,9 +6,6 @@ export type CardVariant = "dark" | "light";
 
 interface CardTemplateProps {
   userName: string;
-  role: string;
-  age: number;
-  image: string;
   variant: CardVariant;
   onTextureReady: (dataUrl: string) => void;
   city?: string;
@@ -23,7 +20,7 @@ export interface CardTemplateRef {
 const CANVAS_SIZE = 1376;
 
 const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
-  ({ userName, role, age, image, variant, onTextureReady, city, date }, ref) => {
+  ({ userName, variant, onTextureReady, city, date }, ref) => {
     const [baseImage, setBaseImage] = useState<HTMLImageElement | null>(null);
 
     const imageSrc = variant === "dark" ? "/card-base-dark.png" : "/card-base-light.png";
@@ -42,29 +39,16 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       canvas.width = CANVAS_SIZE;
       canvas.height = CANVAS_SIZE;
       const ctx = canvas.getContext("2d");
-
+      
       if (!ctx) return;
 
-      if (image) {
-        const profileImg = new Image();
-        profileImg.crossOrigin = "anonymous";
-        profileImg.src = image;
-
-        await new Promise((resolve) => {
-          profileImg.onload = resolve;
-        });
-
-        const imgSize = 260;
-        const imgX = CANVAS_SIZE / 2 - imgSize / 2;
-        const imgY = 350;
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(CANVAS_SIZE / 2, imgY + imgSize / 2, imgSize / 2, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.clip();
-        ctx.drawImage(profileImg, imgX, imgY, imgSize, imgSize);
-        ctx.restore();
+      // Draw base card image (fills entire canvas)
+      if (baseImage) {
+        ctx.drawImage(baseImage, 0, 0, CANVAS_SIZE, CANVAS_SIZE);
+      } else {
+        // Fallback black background if image not loaded
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
       }
 
       // Draw user name at the bottom left area (below the geometric pattern)
@@ -73,7 +57,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       ctx.font = 'normal 48px "Geist Mono", monospace';
       ctx.textAlign = "right";
       ctx.textBaseline = "middle";
-
+      
       const textX = (CANVAS_SIZE / 2) - 55;
       const textY = CANVAS_SIZE - 400;
       ctx.fillText(displayName.toUpperCase(), textX, textY);
@@ -92,13 +76,6 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
         const cityTextX = (CANVAS_SIZE / 2) - 55;
         const cityTextY = CANVAS_SIZE - 1226;
         cityRender.fillText(city.toUpperCase(), cityTextX, cityTextY);
-      }
-
-      if (age) {
-        ctx.fillStyle = "#aaaaaa";
-        ctx.font = 'normal 38px "Geist Mono", monospace';
-        ctx.textAlign = "center";
-        ctx.fillText(`${age} YEARS OLD`, CANVAS_SIZE / 2, CANVAS_SIZE - 280);
       }
 
       // Render date label
@@ -131,7 +108,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       fullCanvas.width = CANVAS_SIZE;
       fullCanvas.height = CANVAS_SIZE;
       const fullCtx = fullCanvas.getContext("2d");
-
+      
       if (!fullCtx) return;
 
       // Draw base card image (fills entire canvas)
@@ -149,7 +126,7 @@ const CardTemplate = forwardRef<CardTemplateRef, CardTemplateProps>(
       fullCtx.font = 'normal 48px "Geist Mono", monospace';
       fullCtx.textAlign = "right";
       fullCtx.textBaseline = "middle";
-
+      
       const textX = (CANVAS_SIZE / 2) - 55;
       const textY = CANVAS_SIZE - 400;
       fullCtx.fillText(displayName.toUpperCase(), textX, textY);

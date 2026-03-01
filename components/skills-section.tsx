@@ -6,8 +6,9 @@ import PhoneContent from './Phone'
 
 export default function SkillsSection() {
   const words = ["modern", "scalable", "interactive", "efficient"]
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <section id='skills' className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
 
       <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 

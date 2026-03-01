@@ -69,7 +69,7 @@ const projects: Project[] = [
 
 export default function ProjectSection() {
   return (
-    <section className="w-full py-24 px-6 md:px-16 dark:bg-black dark:text-white">
+    <section id="projetos" className="w-full py-24 px-6 md:px-16 dark:bg-black dark:text-white">
       <div className="max-w-7xl mx-auto space-y-72">
         {projects.map((project, index) => {
           const isReversed = index % 2 !== 0

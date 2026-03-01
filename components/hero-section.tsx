@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-screen bg-[#f5f5f5] overflow-hidden flex items-center justify-center px-6">
+    <section id="home" className="relative w-full h-screen overflow-hidden flex items-center justify-center px-6">
       <h1 className="absolute top-1/2 -translate-y-1/2 text-[140px] md:text-[200px] font-extrabold text-blue-600 tracking-tight select-none">
         FULLSTACK
       </h1>
