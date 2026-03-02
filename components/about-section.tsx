@@ -1,36 +1,87 @@
+import { Contact, Info } from "lucide-react";
 import LanyardWithControls from "./lanyard-with-controls";
+import { Badge } from "./ui/badge";
+import { Tooltip } from "./ui/tooltip-card";
+import { LinkPreview } from "./ui/link-preview";
 
 export default function AboutSection() {
   return (
     <section id="about" className="min-h-screen flex items-center justify-center">
 
-      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="space-y-6">
-          <h1 className="text-4xl lg:text-5xl font-bold">
-            Olá, eu sou o Paulo 👋
-          </h1>
+      <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
+        <div className="space-y-8">
 
-          <h2 className="text-xl text-muted-foreground">
-            Estudante de Engenharia da Computação & Desenvolvedor em formação
+          <Badge className="w-fit flex items-center gap-2 bg-[#31323e] text-[#bfc0d1] border border-[#60519b]/40 shadow-lg shadow-[#60519b]/20">
+            <Contact className="h-4 w-4 text-[#60519b]" />
+            Sobre mim
+          </Badge>
+
+          <div className="relative inline-block">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-[#bfc0d1]">
+              Olá, eu sou{" "}
+              <span className="text-[#60519b] drop-shadow-[0_0_15px_rgba(96,81,155,0.6)]">
+                Paulo
+              </span>
+            </h1>
+
+            <Tooltip
+              containerClassName="absolute top-4 -right-8 cursor-pointer"
+              content={
+                <div className="max-w-xs text-sm">
+                  <p className="font-semibold mb-1">Sobre esta seção:</p>
+                  <p>
+                    Aqui apresento minha formação, tecnologias que utilizo
+                    e minha evolução como desenvolvedor.
+                  </p>
+                </div>
+              }
+            >
+              <Info className="w-4 h-4 text-neutral-500 hover:text-[#60519b] transition" />
+            </Tooltip>
+          </div>
+
+          <h2 className="text-xl lg:text-2xl text-[#bfc0d1]/70 font-medium">
+            Estudante de{" "}
+            <LinkPreview
+              url="https://pt.wikipedia.org/wiki/Engenharia_da_Computa%C3%A7%C3%A3o"
+              className="text-[#60519b] font-semibold"
+            >
+              Engenharia da Computação
+            </LinkPreview>
+            <span className="text-[#60519b]"> & Desenvolvedor Full-Stack</span>
           </h2>
 
-          <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-            Sou apaixonado por tecnologia e desenvolvimento de software.
-            Atualmente curso Engenharia da Computação e estou focado
-            em evoluir minhas habilidades como desenvolvedor full-stack.
-          </p>
+          <div className="space-y-5 text-lg leading-relaxed text-[#bfc0d1]/70">
+            <p>
+              Sou apaixonado por tecnologia e pela construção de experiências digitais.
+              Atualmente estou focado em evoluir como engenheiro de software,
+              criando aplicações organizadas e bem estruturadas.
+            </p>
 
-          <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-            Tenho experiência prática com React, interfaces interativas,
-            lógica de programação em C e construção de projetos reais.
-            Gosto de entender profundamente como as coisas funcionam —
-            não apenas fazer funcionar.
-          </p>
+            <p>
+              Tenho experiência com{" "}
+              <LinkPreview
+                url="https://react.dev"
+                className="text-[#60519b] font-medium"
+              >
+                React
+              </LinkPreview>
+              , criação de interfaces interativas,
+              lógica estruturada em{" "}
+              <LinkPreview
+                url="https://en.wikipedia.org/wiki/C_(programming_language)"
+                className="text-[#60519b] font-medium"
+              >
+                C
+              </LinkPreview>
+              {" "}e desenvolvimento de projetos reais.
+            </p>
 
-          <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-            Meu objetivo é me tornar um engenheiro de software completo,
-            construindo produtos modernos, performáticos e bem estruturados.
-          </p>
+            <p>
+              Acredito que código de qualidade vai além de funcionar —
+              ele precisa ser organizado, compreensível e sustentável.
+            </p>
+          </div>
         </div>
 
         <LanyardWithControls

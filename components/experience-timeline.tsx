@@ -146,9 +146,9 @@ export default function ExperienceTimeline() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight italic">
-            Minha experiência
-          </h2>
+          <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+            Olá, eu sou o Paulo
+          </h1>
           <div className="mt-5 h-px w-20 bg-linear-to-r from-transparent via-white/25 to-transparent mx-auto" />
         </motion.div>
 

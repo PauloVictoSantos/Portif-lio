@@ -10,19 +10,10 @@ export function ContactSection() {
     <section id="Contact" className="relative min-h-screen overflow-hidden">
       <div className="relative mx-auto max-w-6xl px-6 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* Left */}
           <div className="flex flex-col justify-center">
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sky-500/10 mb-8 backdrop-blur-md border border-white/10"
-            >
-              <Mail className="w-6 h-6 text-sky-400" />
-            </motion.div>
+
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -31,7 +22,12 @@ export function ContactSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl lg:text-5xl font-bold"
             >
-              Contate-nos
+              <span>
+                
+              </span>
+              <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                Olá, eu sou o Paulo
+              </h1>
             </motion.h2>
 
             <motion.p

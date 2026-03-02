@@ -55,9 +55,10 @@ export default function RootLayout({
           <div className="fixed top-0 left-0 right-0 z-50">
             <NavbarDemo />
           </div>
+     
           {children}
           {/* <Analytics /> */}
-          </ ThemeProvider >
+        </ ThemeProvider >
       </body>
     </html>
   )

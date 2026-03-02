@@ -69,7 +69,10 @@ const projects: Project[] = [
 
 export default function ProjectSection() {
   return (
-    <section id="projetos" className="w-full py-24 px-6 md:px-16 dark:bg-black dark:text-white">
+    <section id="projetos" className="w-full py-24 px-6 md:px-16">
+      <h1 className="text-5xl lg:text-7xl text-left font-extrabold leading-[1.1] tracking-tight">
+        Olá, eu sou o Paulo
+      </h1>
       <div className="max-w-7xl mx-auto space-y-72">
         {projects.map((project, index) => {
           const isReversed = index % 2 !== 0
@@ -81,9 +84,8 @@ export default function ProjectSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className={`flex flex-col md:flex-row items-center gap-12 ${
-                isReversed ? "md:flex-row-reverse" : ""
-              }`}
+              className={`flex flex-col md:flex-row items-center gap-12 ${isReversed ? "md:flex-row-reverse" : ""
+                }`}
             >
               {/* Preview */}
               <div className="w-full md:w-1/2">
