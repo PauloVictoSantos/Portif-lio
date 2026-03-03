@@ -8,6 +8,10 @@ import {
   useSpring,
   useInView,
 } from "framer-motion"
+import { Tooltip } from "./ui/tooltip-card"
+import { Info } from "lucide-react"
+import { Badge } from "./ui/badge"
+import { MdWork } from "react-icons/md"
 
 interface Experience {
   id: number
@@ -121,11 +125,11 @@ export default function ExperienceTimeline() {
     restDelta: 0.001,
   })
 
-  const progress = useTransform(smoothProgress, [0.1, 0.85], [0, 1])
-  const ballTop = useTransform(smoothProgress, [0.1, 0.85], ["0%", "100%"])
+  const progress = useTransform(smoothProgress, [0, 1], [0, 1])
+  const ballTop = useTransform(smoothProgress, [0, 1], ["0%", "100%"])
   const ballOpacity = useTransform(
     smoothProgress,
-    [0.05, 0.12, 0.8, 0.9],
+    [0, 0.05, 0.95, 1],
     [0, 1, 1, 0]
   )
 
@@ -134,27 +138,40 @@ export default function ExperienceTimeline() {
       ref={containerRef}
       className="relative w-full min-h-screen py-20 md:py-32 overflow-hidden"
     >
-      {/* Subtle radial background */}
-      <div className="absolute inset-0" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
-        {/* Section Title */}
+      <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
-          className="text-center mb-16 md:mb-28"
+          className="mb-20 md:mb-32"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
-            Olá, eu sou o Paulo
-          </h1>
-          <div className="mt-5 h-px w-20 bg-linear-to-r from-transparent via-white/25 to-transparent mx-auto" />
+          <div className="max-w-7xl mx-auto space-y-10">
+
+            <Badge className="w-fit flex items-center gap-2 bg-[#31323e] text-[#bfc0d1] border border-[#60519b]/40 shadow-lg shadow-[#60519b]/20">
+              <MdWork className="h-4 w-4 text-[#60519b]" />
+              Experiência
+            </Badge>
+
+            <div className="relative w-full max-w-4xl space-y-6">
+
+              <h1 className="text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                Trajetória Profissional
+              </h1>
+
+              <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
+                Experiências que contribuíram para meu crescimento técnico e profissional,
+                envolvendo desenvolvimento de aplicações web, organização de código,
+                trabalho com diferentes tecnologias e foco contínuo em qualidade,
+                performance e boas práticas de engenharia de software.
+              </p>
+
+            </div>
+          </div>
         </motion.div>
 
-        {/* Timeline Area */}
         <div className="relative">
-          {/* SVG line drawn by the ball - Desktop only */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 pointer-events-none">
             <svg
               className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-4"
@@ -181,17 +198,13 @@ export default function ExperienceTimeline() {
               }}
             >
               <div className="relative flex items-center justify-center">
-                {/* Outer glow */}
                 <div className="absolute w-10 h-10 rounded-full bg-blue-600/95 dark:bg-white/5 blur-xl" />
-                {/* Medium glow */}
                 <div className="absolute w-6 h-6 rounded-full bg-blue-600/90 dark:bg-white/10 blur-md" />
-                {/* Core ball */}
                 <div className="w-5.5 h-5.5 rounded-full bg-blue-600 dark:bg-white shadow-[0_0_16px_rgba(255,255,255,0.5),0_0_32px_rgba(255,255,255,0.15)]" />
               </div>
             </motion.div>
           </div>
 
-          {/* Experience Items */}
           <div className="flex flex-col gap-12 md:gap-20">
             {experiences.map((experience, index) => (
               <ExperienceItem
