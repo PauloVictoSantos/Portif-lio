@@ -6,7 +6,7 @@ import { LinkPreview } from "./ui/link-preview";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center">
+    <section id="about" className="h-screen flex items-center justify-center">
 
       <div className="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
         <div className="space-y-8">
@@ -18,10 +18,7 @@ export default function AboutSection() {
 
           <div className="relative inline-block">
             <h1 className="text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-[#bfc0d1]">
-              Olá, eu sou{" "}
-              <span className="text-[#60519b] drop-shadow-[0_0_15px_rgba(96,81,155,0.6)]">
-                Paulo
-              </span>
+              Olá, eu sou Paulo
             </h1>
 
             <Tooltip
@@ -40,15 +37,15 @@ export default function AboutSection() {
             </Tooltip>
           </div>
 
-          <h2 className="text-xl lg:text-2xl text-[#bfc0d1]/70 font-medium">
+          <h2 className="text-xl lg:text-2xl font-medium">
             Estudante de{" "}
             <LinkPreview
               url="https://pt.wikipedia.org/wiki/Engenharia_da_Computa%C3%A7%C3%A3o"
-              className="text-[#60519b] font-semibold"
+              className="font-semibold"
             >
               Engenharia da Computação
             </LinkPreview>
-            <span className="text-[#60519b]"> & Desenvolvedor Full-Stack</span>
+            <span> & Desenvolvedor Full-Stack</span>
           </h2>
 
           <div className="space-y-5 text-lg leading-relaxed text-[#bfc0d1]/70">

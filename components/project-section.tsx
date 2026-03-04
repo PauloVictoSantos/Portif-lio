@@ -58,7 +58,7 @@ export default function ProjectSection() {
   return (
     <section
       id="projetos"
-      className="w-full space-y-32 px-6 md:px-20"
+      className="w-full space-y-32 px-6 md:px-20 mt-40"
     >
       <div className="max-w-7xl mx-auto space-y-8">
         <Badge className="w-fit flex items-center gap-2 bg-[#31323e] text-[#bfc0d1] border border-[#60519b]/40 shadow-lg shadow-[#60519b]/20">

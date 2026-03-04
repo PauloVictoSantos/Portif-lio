@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 // import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { PageLoader } from '@/components/page-loader'
 import { NavbarDemo } from '@/components/navBar'
 import { ThemeProvider } from '@/components/provedor-de-tema'
 
@@ -13,7 +14,7 @@ const _roboto = Roboto({
 export const metadata: Metadata = {
   title: 'Paulo Victor | Desenvolvedor Full-Stack',
   description: 'Desenvolvedor Full-Stack focado em criar experiencias digitais modernas, performaticas e escalaveis.',
-  generator: 'v0.app',
+  generator: 'Paulo Victor',
   icons: {
     icon: [
       {
@@ -55,8 +56,10 @@ export default function RootLayout({
           <div className="fixed top-0 left-0 right-0 z-50">
             <NavbarDemo />
           </div>
-     
-          {children}
+
+          <PageLoader>
+            {children}
+          </PageLoader>
           {/* <Analytics /> */}
         </ ThemeProvider >
       </body>
