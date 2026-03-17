@@ -331,12 +331,9 @@ function LoadingText() {
   )
 }
 
-/* --- Main exported component --- */
 export function ChipLoader() {
   return (
     <div className="relative flex flex-col items-center justify-center w-full h-full gap-12 overflow-hidden">
-      <Stars />
-      <Clouds />
       <LongFazers />
       <Rocket />
       <LoadingText />

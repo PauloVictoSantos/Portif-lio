@@ -1,9 +1,9 @@
 import AboutSection from "@/components/about-section"
 import { ContactSection } from "@/components/contact-section"
 import ExperienceSection from "@/components/experincia"
-import HeroSection from "@/components/hero-section"
+import HeroSection from "@/components/hero/hero-section"
 import ProjectSection from "@/components/project-section"
-import SkillsSection from "@/components/skills-section"
+import SkillsSection from "@/components/skills/skills-section"
 import OnlineUsers from "@/components/OnlineUsers"
 import { ShootingStars } from '@/components/ui/shooting-stars'
 import { StarsBackground } from '@/components/ui/stars-background'

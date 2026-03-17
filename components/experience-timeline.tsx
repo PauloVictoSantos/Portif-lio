@@ -8,10 +8,8 @@ import {
   useSpring,
   useInView,
 } from "framer-motion"
-import { Tooltip } from "./ui/tooltip-card"
-import { Info } from "lucide-react"
-import { Badge } from "./ui/badge"
 import { MdWork } from "react-icons/md"
+import SectionBadge from "./ui/SectionBadge"
 
 interface Experience {
   id: number
@@ -24,21 +22,21 @@ interface Experience {
 const experiences: Experience[] = [
   {
     id: 1,
-    role: "Desenvolvedor Front End JR",
-    company: "Tucupy Tecnologia",
-    period: "NOV 2024 - ATUALMENTE",
+    role: "Trainee em Inovação",
+    company: "IFAM / EMBRAPII – Capacitação 4.0",
+    period: "Dez 2022 - Nov 2023",
     description:
-      "Atuo na área de desenvolvimento front end, focado na implementação e melhoria de interfaces e funcionalidades em projetos internos. Meu trabalho envolve colaboração com a equipe e integração com serviços internos da empresa.",
+      "Participação no projeto de inovação tecnológica Capacitação 4.0, atuando no apoio ao desenvolvimento de soluções tecnológicas e atividades de pesquisa aplicada. Colaboração no desenvolvimento de sistemas e ferramentas digitais, realização de testes, suporte técnico e participação em iniciativas educacionais voltadas à formação tecnológica e inovação.",
   },
   {
     id: 2,
-    role: "Estagiário de desenvolvimento fullstack",
-    company: "Agência Virtú Marketing Digital",
-    period: "MAI 2024 - SET 2024",
+    role: "Assistente Fiscal Tributario",
+    company: "Prefeitura Municipal - Setor de Tributos",
+    period: "2025 - Atual",
     description:
-      "Fui responsável por um sistema de notícias, onde no frontend era utilizado React para consumir uma API feita em Node.js no backend. O sistema consistia em diversas páginas com diversos tópicos diferentes de notícias, além de ter uma página individual para cada notícia e uma parte apenas para administradores acessarem, onde era possível postar e excluir as notícias. O backend era feito com Node, Express e MySQL. Após minha chegada refatorei toda a API, melhorando o tempo de resposta e o tamanho do JSON que era enviado pelo backend, além de melhorar o SEO e o desempenho do sistema, também implementei as funcionalidades de editar notícias e criei um editor de texto.",
+      "Atuação no suporte e desenvolvimento de soluções tecnológicas para o setor de tributos da prefeitura. Responsável por auxiliar na manutenção de sistemas administrativos, análise de dados e melhoria de processos digitais relacionados à gestão tributária.",
   },
-]
+];
 
 function ExperienceItem({
   experience,
@@ -70,7 +68,6 @@ function ExperienceItem({
         </span>
       </motion.div>
 
-      {/* Center: Period */}
       <motion.div
         className="hidden md:flex flex-col items-center justify-center w-35 relative z-10"
         initial={{ opacity: 0, scale: 0.5 }}
@@ -82,7 +79,6 @@ function ExperienceItem({
         </span>
       </motion.div>
 
-      {/* Right: Description (no card) */}
       <motion.div
         className="flex items-center md:pl-12"
         initial={{ opacity: 0, x: 40 }}
@@ -94,7 +90,6 @@ function ExperienceItem({
         }}
       >
         <div>
-          {/* Mobile: period tag */}
           <div className="md:hidden inline-flex items-center gap-2 mb-3">
             <div className="h-1.5 w-1.5 rounded-full " />
             <span className="text-xs font-semibold tracking-widest uppercase ">
@@ -148,11 +143,10 @@ export default function ExperienceTimeline() {
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="max-w-7xl mx-auto space-y-10">
-
-            <Badge className="w-fit flex items-center gap-2 bg-[#31323e] text-[#bfc0d1] border border-[#60519b]/40 shadow-lg shadow-[#60519b]/20">
-              <MdWork className="h-4 w-4 text-[#60519b]" />
-              Experiência
-            </Badge>
+            <SectionBadge
+              icon={<MdWork className="h-10 w-10 text-[#60519b]" />}
+              text="Experiência"
+            />
 
             <div className="relative w-full max-w-4xl space-y-6">
 
@@ -160,7 +154,7 @@ export default function ExperienceTimeline() {
                 Trajetória Profissional
               </h1>
 
-              <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
+              <p className="text-lg leading-relaxed max-w-2xl">
                 Experiências que contribuíram para meu crescimento técnico e profissional,
                 envolvendo desenvolvimento de aplicações web, organização de código,
                 trabalho com diferentes tecnologias e foco contínuo em qualidade,

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Home, Folder, BarChart3, Mail } from "lucide-react"
-
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   SiReact,
   SiNextdotjs,
@@ -14,6 +14,9 @@ import {
   SiC,
   SiGithub,
 } from "react-icons/si"
+import { ChartRadarDots } from "./ChartRadarDotsTecs"
+import { useGithub } from "@/hooks/useGithub"
+import { VisitorsChart } from "./viewsChart"
 
 const pages = ["home", "projects", "stats", "contact"]
 
@@ -38,8 +41,6 @@ const VisionCard = ({ children }: any) => (
       relative rounded-[32px] p-6
       bg-white/10
       backdrop-blur-3xl
-      border border-white/20
-      
     "
   >
     <div className="absolute inset-0 rounded-[32px] bg-linear-to-br from-white/30 to-transparent opacity-40 pointer-events-none" />
@@ -52,10 +53,7 @@ const FloatingStat = ({ label, value }: any) => (
     whileHover={{ scale: 1.08 }}
     transition={{ type: "spring", stiffness: 200 }}
     className="
-      p-5 rounded-2xl 
-      bg-white/10 backdrop-blur-2xl 
-      border border-white/20
-      shadow-lg
+      rounded-2xl 
       text-center
     "
   >
@@ -69,7 +67,6 @@ const FloatingStat = ({ label, value }: any) => (
 function HomeScreen() {
   return (
     <div className="px-4 pb-24 space-y-10">
-
       <VisionCard>
         <h2 className="text-lg font-semibold tracking-wide">
           Paulo Santos
@@ -85,7 +82,6 @@ function HomeScreen() {
       </h3>
 
       <div className="grid grid-cols-4 gap-y-10 gap-x-4 place-items-center">
-
         {techs.map((tech, index) => (
           <motion.div
             key={tech.name}
@@ -126,12 +122,12 @@ function HomeScreen() {
 
 export default function PhoneContent() {
   const [activePage, setActivePage] = useState("home")
-  const [github, setGithub] = useState<any>(null)
   const [time, setTime] = useState("")
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null)
   const [isCharging, setIsCharging] = useState(false)
   const [networkType, setNetworkType] = useState<string | null>(null)
   const [isOnline, setIsOnline] = useState(true)
+  const github = useGithub()
 
   useEffect(() => {
     const updateTime = () => {
@@ -196,27 +192,12 @@ export default function PhoneContent() {
     }
   }, [])
 
-  useEffect(() => {
-    fetch("/api/github")
-      .then(res => res.json())
-      .then(data => setGithub(data))
-  }, [])
-
   return (
     <div className="relative mx-auto h-full overflow-hidden">
-
-      <div className="absolute inset-0 bg-linear-to-br from-indigo-500 via-purple-600 to-pink-500" />
-      <div className="absolute w-125 h-125 bg-white/20 blur-[140px] rounded-full -top-40 -left-40 animate-pulse" />
-      <div className="absolute w-100 h-100 bg-cyan-400/30 blur-[120px] rounded-full bottom-0 right-0 animate-pulse" />
-
       <div className="relative flex flex-col h-full pt-6 text-white">
-
         <div className="flex justify-between text-xs opacity-90 px-6 mb-6">
-
           <span>{time}</span>
-
           <div className="flex items-center gap-3">
-
             {isOnline ? (
               <div className="flex items-center gap-1">
                 <span className="text-[10px] uppercase">
@@ -269,13 +250,11 @@ export default function PhoneContent() {
           animate={{ x: `-${pages.indexOf(activePage) * 100}%` }}
           transition={{ type: "spring", stiffness: 110, damping: 18 }}
         >
-
           <div className="min-w-full overflow-y-auto">
             <HomeScreen />
           </div>
 
           <div className="min-w-full px-4 space-y-6 ">
-
             <VisionCard>
               <h3 className="font-semibold text-base">
                 epo.name
@@ -284,24 +263,81 @@ export default function PhoneContent() {
                 description || "Sem descrição"
               </p>
             </VisionCard>
-
           </div>
 
-          <div className="min-w-full px-4 space-y-6 overflow-y-auto pb-24">
-            {github && (
-              <VisionCard>
-                <h3 className="text-base font-semibold mb-6">
-                  GitHub Overview
-                </h3>
+          <ScrollArea className="h-145 min-w-full px-4">
+            <div className="space-y-6 h-220">
+              {github && (
+                <div>
+                  <div className="space-y-2 mb-6">
+                    <h1 className="text-lg font-semibold">
+                      GitHub Dashboard
+                    </h1>
 
-                <div className="grid grid-cols-2 gap-5">
-                  <FloatingStat label="Repos" value={github.publicRepos} />
-                  <FloatingStat label="Followers" value={github.followers} />
-                  <FloatingStat label="Following" value={github.following} />
+                    <p className="text-sm text-muted-foreground">
+                      Overview of my development activity and repositories.
+                    </p>
+                  </div>
+
+                  <div className="gap-4 mb-8 flex items-center justify-between px-2">
+                    <FloatingStat label="Repos" value={github.publicRepos} />
+                    <FloatingStat label="Followers" value={github.followers} />
+                    <FloatingStat label="Stars" value={github.stars} />
+                  </div>
+
+                  <ChartRadarDots />
+
+                  <div className="mt-8">
+
+                    <h4 className="text-sm font-medium mb-4">
+                      Top Repositories
+                    </h4>
+
+                    <div className="grid gap-3">
+
+                      {github.topRepos.map((repo: any) => (
+
+                        <a
+                          key={repo.id}
+                          href={repo.html_url}
+                          target="_blank"
+                          className="
+             p-4 rounded-xl
+             bg-white/5
+             border border-white/10
+             hover:bg-white/10
+             transition
+           "
+                        >
+
+                          <div className="flex justify-between">
+
+                            <p className="font-medium">
+                              {repo.name}
+                            </p>
+
+                            <span className="text-xs text-yellow-400">
+                              ⭐ {repo.stargazers_count}
+                            </span>
+
+                          </div>
+
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {repo.description}
+                          </p>
+
+                        </a>
+
+                      ))}
+
+                    </div>
+
+                  </div>
+
                 </div>
-              </VisionCard>
-            )}
-          </div>
+              )}
+            </div>
+          </ScrollArea>
 
           <div className="min-w-full px-4 space-y-6 overflow-y-auto pb-24">
             <VisionCard>
@@ -319,7 +355,6 @@ export default function PhoneContent() {
               </div>
             </VisionCard>
           </div>
-
         </motion.div>
 
         <footer className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[92%]">

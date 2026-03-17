@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
-// import { Analytics } from '@vercel/analytics/next'
+import { Analytics } from '@/components/skills/Analytics'
 import './globals.css'
 import { PageLoader } from '@/components/page-loader'
 import { NavbarDemo } from '@/components/navBar'
@@ -39,11 +39,12 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
-export default function RootLayout({
+export default function RootLayout({  
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  
   return (
     <html lang="pt-BR">
       <body className="font-sans antialiased">
@@ -60,7 +61,7 @@ export default function RootLayout({
           <PageLoader>
             {children}
           </PageLoader>
-          {/* <Analytics /> */}
+          <Analytics />
         </ ThemeProvider >
       </body>
     </html>
